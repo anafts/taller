@@ -158,17 +158,99 @@ begin
     end;
 end;
 
+procedure imprimirVentasPorFecha(a: arbolVentas; fecha: rango_fecha; var totalProductos: integer);
+	begin
+		if (a <> nil) then
+		begin
+			ImprimirVentasPorFecha(a^.HI, fecha, totalProductos);
+			imprimirVentasPorFecha(a^.HD, fecha, totalProductos);
+
+			if (a^.dato.fecha = fecha) then
+				totalProductos := totalProductos + a^.dato.cant;
+		end;
+	end;
+	
+procedure imprimirCodMayorCantidad(a:arbolProductos; var cod: integer; var mayorCantidad: integer); 
+	begin
+		mayorCantidad:= 0; 
+		if(a <> nil) then begin
+			imprimirCodMayorCantidad(a^.HI, cod, mayorCantidad);
+			imprimirCodMayorCantidad(a^.HD, cod, mayorCantidad); 
+			
+			if (a^.dato.cant > mayorCantidad) then begin
+				mayorCantidad:= a^.dato.cant;
+				cod:= a^.dato.codP;
+			end; 
+		end;
+	end; 
+
+function recorrerLista(l: lista): integer;
+var
+    total: integer;
+	begin
+		total := 0;
+		while (l <> nil) do begin
+			total := total + 1;
+			l := l^.sig;
+		end;
+		recorrerLista := total;
+	end;
+
+procedure imprimirCodMayorVentas(a:arbolLista; var cod: integer; var cantVentas:integer);
+var
+	cantAtual: integer; 
+	begin
+		if (a <> nil) then begin
+			cantAtual:= recorrerLista(a^.dato.l);
+			if (cantAtual > cantVentas) then begin
+				cantVentas := cantAtual;
+				cod := a^.dato.codP;
+			end;
+			
+			imprimirCodMayorVentas(a^.HI, cod, cantVentas);
+			imprimirCodMayorVentas(a^.HD, cod, cantVentas); 
+		end; 
+	end; 
 var
     a1: arbolVentas;
     a2: arbolProductos;
     a3: arbolLista;
     
+    fecha: rango_fecha; 
+    totalProductos:integer; 
+    
+    cod: integer; 
+    mayorCantidad: integer;
+    
+    codLista: integer; 
+    cantVentas: integer;
+    
 BEGIN
+	randomize; 
+	
     a1:= nil; 
     a2:= nil; 
     a3:= nil; 
     
     cargarArboles(a1, a2, a3); 
     
+    totalProductos:= 0;
+    fecha:= random(32);
+    
+    ImprimirVentasPorFecha(a1, fecha, totalProductos); 
+    writeln('La cantidad total de productos vendidos en la fecha ', fecha, ' es: ', totalProductos);
+    
+    cod:= -1;
+    mayorCantidad:= -1;  
+    
+    imprimirCodMayorCantidad(a2, cod, mayorCantidad); 
+    writeln('El producto mas vendido tiene el codigo ', cod, ' con ', mayorCantidad, ' unidades');
+    
+    
+    codLista:= -1; 
+    cantVentas:= 0;
+    
+    imprimirCodMayorVentas(a3, codLista, cantVentas);
+    writeln('El codigo del producto mas vendido es: ' ,codLista, ' con ' ,cantVentas, ' ventas');
     
 END.

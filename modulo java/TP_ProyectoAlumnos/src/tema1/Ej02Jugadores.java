@@ -9,7 +9,7 @@ public class Ej02Jugadores {
   
     public static void main(String[] args) {
         
-         int DF = 2;
+         int DF = 15;
          
         //Paso 2: Declarar la variable vector de double 
         double [] vector;

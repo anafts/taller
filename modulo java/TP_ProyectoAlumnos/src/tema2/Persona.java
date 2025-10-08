@@ -17,9 +17,7 @@ public class Persona {
         edad = unaEdad; 
     }
     
-    public Persona(){
-     
-    }
+    public Persona(){}
 
     public int getDNI() {
         return DNI;

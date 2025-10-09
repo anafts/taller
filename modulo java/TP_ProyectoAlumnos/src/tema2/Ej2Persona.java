@@ -7,24 +7,48 @@
 
 package tema2;
 
-import PaqueteLectura.Lector; // Necessário para ler do teclado
+import PaqueteLectura.GeneradorAleatorio;
 
 public class Ej2Persona { 
 
     public static void main(String[] args) {
         
-        Persona per1 = new Persona(); 
-        
-        System.out.println("Ingrese un Nombre: ");
-        per1.setNombre(Lector.leerString());
-        
-        System.out.println("Ingrese un DNI: ");
-        per1.setDNI(Lector.leerInt());
-        
-        System.out.println("Ingrese una Edad: ");
-        per1.setEdad(Lector.leerInt());
-        
-        System.out.println(per1.toString());
+       GeneradorAleatorio.iniciar();
+       
+       int DF = 15; 
+       int DL = 0; 
+       
+       Persona [] vector = new Persona [DF]; 
+       int dni; 
+       String nombre; 
+       int edad = GeneradorAleatorio.generarInt(100); 
+       
+       while (edad != 0 && DL < DF) {
+           nombre = GeneradorAleatorio.generarString(5); 
+           dni = GeneradorAleatorio.generarInt(90000000) + 10000000; 
+           vector[DL] = new Persona(nombre, dni, edad); 
+           
+           DL++;
+           
+           edad = GeneradorAleatorio.generarInt(100); 
+       }
+       
+       int mayores65 = 0; 
+       int menorDNI = 999999999; 
+       Persona perMenorDNI = null; 
+       
+       for (int i=0; i<DF; i++) {
+           if(vector[i].getEdad() > 65) {
+               mayores65+= 1; 
+           }
+           if(vector[i].getDNI() < menorDNI) {
+               menorDNI = vector[i].getDNI();
+               perMenorDNI = vector[i]; 
+           }
+       }
+       
+       System.out.println("La cantidad de personas mayores de 65 años: " + mayores65);
+       System.out.println("La representación de la persona con menor DNI: " + perMenorDNI.toString());
         
     }
 }

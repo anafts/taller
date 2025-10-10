@@ -3,38 +3,35 @@ Clase Libro a la cual se agregaron constructores.
  */
 package tema3;
 
-/**
- *
- * @author vsanz
- */
+
 public class Libro {
    private String titulo;
-   private String primerAutor; 
+   private Autor primerAutor; 
    private String editorial;
    private int añoEdicion;
    private String ISBN; 
    private double precio; 
      
     
-    public Libro(  String unTitulo,  String unaEditorial, 
-    int unAñoEdicion,  String unPrimerAutor, String unISBN, double unPrecio){
-         titulo = unTitulo;
-         editorial = unaEditorial; 
-         añoEdicion= unAñoEdicion;
-         primerAutor = unPrimerAutor;
-         ISBN =  unISBN;
-         precio = unPrecio;
+    public Libro(String titulo,  String editorial, 
+    int añoEdicion,  Autor primerAutor, String ISBN, double precio){
+         this.titulo = titulo;
+         this.editorial = editorial; 
+         this.añoEdicion= añoEdicion;
+         this.primerAutor = primerAutor;
+         this.ISBN =  ISBN;
+         this.precio = precio;
     }
     
-    public Libro(  String unTitulo,  String unaEditorial, String unPrimerAutor, String unISBN){
-         titulo = unTitulo;
-         editorial = unaEditorial; 
-         añoEdicion= 2015;
-         primerAutor = unPrimerAutor;
-         ISBN =  unISBN;
-         precio = 100;
+    public Libro(String titulo,  String editorial,  Autor primerAutor, String ISBN){
+         this.titulo = titulo;
+         this.editorial = editorial; 
+         this.añoEdicion= 2015;
+         this.primerAutor = primerAutor;
+         this.ISBN =  ISBN;
+         this.precio = 100;
     }
-    
+     
     public Libro(){
    
     }
@@ -50,7 +47,7 @@ public class Libro {
         return añoEdicion;
     }
   
-    public String getPrimerAutor(){
+    public Autor getPrimerAutor(){
         return primerAutor;
     } 
     public String getISBN(){
@@ -60,25 +57,25 @@ public class Libro {
         return precio;
     }
    
-    public void setTitulo(String unTitulo){
-        titulo = unTitulo;
+    public void setTitulo(String titulo){
+        this.titulo = titulo;
     }
    
-    public void setEditorial(String unaEditorial){
-         editorial = unaEditorial;
+    public void setEditorial(String editorial){
+         this.editorial = editorial;
     }
-    public void setAñoEdicion(int unAño){
-         añoEdicion = unAño;
+    public void setAñoEdicion(int añoEdicion){
+         this.añoEdicion = añoEdicion;
     }
    
-    public void setPrimerAutor(String unPrimerAutor){
-         primerAutor=unPrimerAutor;
+    public void setPrimerAutor(Autor primerAutor){
+         this.primerAutor = primerAutor; 
     } 
-    public void setISBN(String unISBN){
-         ISBN=unISBN;
+    public void setISBN(String ISBN){
+         this.ISBN = ISBN;
     } 
-    public void setPrecio(double unPrecio){
-         precio=unPrecio;
+    public void setPrecio(double precio){
+         this.precio = precio;
     }
   
    
@@ -86,7 +83,7 @@ public class Libro {
    @Override
     public String toString(){
         String aux;
-        aux= titulo + " por " + primerAutor + " - " + añoEdicion + " - " + " ISBN: " + ISBN;
+        aux= titulo + " por " + primerAutor.getNombre() + " - " + añoEdicion + " - " + " ISBN: " + ISBN;
        return ( aux);
     }
         

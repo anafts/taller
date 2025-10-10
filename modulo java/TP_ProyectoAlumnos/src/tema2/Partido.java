@@ -76,6 +76,13 @@ public class Partido {
          }
          return ganador;
                  
-    }	    
+    }
+
+    public String toString() {
+        String aux; 
+        aux = "{" + this.local + this.golesLocal + "VS" + this.visitante + this.golesVisitante + "}"; 
+        return aux; 
+    }
     
 }
+

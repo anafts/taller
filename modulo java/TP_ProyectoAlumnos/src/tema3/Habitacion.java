@@ -4,10 +4,6 @@
  */
 package tema3;
 
-/**
- *
- * @author anafreitas
- */
 public class Habitacion {
     private double costoPorNoche;
     private boolean estaOcupada = false; 

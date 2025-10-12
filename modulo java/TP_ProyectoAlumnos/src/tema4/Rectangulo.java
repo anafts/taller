@@ -10,7 +10,7 @@ public class Rectangulo extends Figura{
     private double altura;
     
     public Rectangulo(double base, double altura, String unColorR, String unColorL){
-        super(unColorR,unColorL);
+        super(unColorR,unColorL); // invoca el constructor de la clase padre
         setBase(base);
         setAltura(altura);
     } 
@@ -31,16 +31,17 @@ public class Rectangulo extends Figura{
         altura = unaAltura;
     }
 
-   
+   @Override
     public double calcularArea() {
         return (getBase()*getAltura()); 
     }
 
-  
+    @Override
     public double calcularPerimetro() {
         return (2*getBase()+2*getAltura());
     }
     
+    @Override
     public String toString(){
        String aux = super.toString() + 
                     " Base: " + getBase() +

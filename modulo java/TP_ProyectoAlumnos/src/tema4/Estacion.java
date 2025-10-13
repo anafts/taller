@@ -42,7 +42,7 @@ public class Estacion {
 
     @Override
     public String toString() {
-        return "Estacion{" + "nombre=" + nombre + ", latitud=" + latitud + ", longitud=" + longitud + '}';
+        return nombre + " (" + latitud + " S - " + longitud + " O): \n";
     }
     
     

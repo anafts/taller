@@ -38,7 +38,7 @@ public class Jugador extends Empleado {
 
     @Override
     public double calcularSueldoACobrar() {
-        double sueldo = this.sueldoBase();
+        double sueldo = super.sueldoBase();
         if(this.calcularEfectividad() > 0.5){
             sueldo += this.getSueldo();
         }
